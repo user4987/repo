@@ -105,8 +105,42 @@
 
 
 
-SET 1 – Independent Ubuntu Commands
-                      Q1 – Create Git Repo, Add Java File, Commit & Push
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               SET 1 – Independent Ubuntu Commands
+                                                Q1 – Create Git Repo, Add Java File, Commit & Push
 # 1. Update system and install Git
 sudo apt update
 sudo apt install git -y
@@ -126,7 +160,7 @@ git branch -M main
 git remote add origin https://github.com/<username>/<repo-name>.git
 git push -u origin main
 
-                         Q2 – Create Maven Project & Build
+                                                    Q2 – Create Maven Project & Build
 # 1. Update system and install Java & Maven
 sudo apt update
 sudo apt install openjdk-17-jdk maven -y
@@ -146,7 +180,7 @@ cd myapp
 mvn clean package
 
 
-                          Q3 – Create Dockerfile & Build Docker Image
+                                                   Q3 – Create Dockerfile & Build Docker Image
 # 1. Update system and install Docker
 sudo apt update
 sudo apt install docker.io -y
@@ -168,10 +202,10 @@ sudo docker build -t myapp:latest .
 
 # 5. Verify image
 sudo docker images
-
-    SET 2 – Independent Ubuntu Commands
-                 Q1 – Create Jenkins Freestyle Project with Maven Build
-
+ 
+                 SET 2 – Independent Ubuntu Commands
+                                           Q1 – Create Jenkins Freestyle Project with Maven Build
+     
 # 3. Install Git
 sudo apt install git -y
 
@@ -192,7 +226,7 @@ sudo systemctl enable jenkins
 #    - Build → Execute Shell: mvn clean package
 # 8. Save and Build → Check console output
 
-                     Q2 – Configure Jenkins to Trigger Build on GitHub Push (Webhook)
+                                          Q2 – Configure Jenkins to Trigger Build on GitHub Push (Webhook)
 
 # 2. Install Jenkins
 
@@ -214,7 +248,8 @@ git push
 # 7. In Jenkins Freestyle job → Build Triggers → GitHub hook trigger for GITScm polling
 # 8. Save job → Push to GitHub → Job triggers automatically
 
-                        Q3 – Run Docker Container and Verify Logs
+                                                 
+                                                         Q3 – Run Docker Container and Verify Logs
 # 1. Update system and install Docker
 sudo apt update
 sudo apt install docker.io -y
@@ -260,8 +295,8 @@ sudo docker logs mycontainer
 
   
 
-    SET 3 – Independent Ubuntu Commands
-                         Q1 – Clone GitHub Repo, Modify Java File, Commit & Push
+               SET 3 – Independent Ubuntu Commands
+                                                 Q1 – Clone GitHub Repo, Modify Java File, Commit & Push
 # 1. Update system & install Git
 sudo apt update
 sudo apt install git -y
@@ -283,7 +318,7 @@ git add HelloWorld.java
 git commit -m "Updated HelloWorld.java"
 git push
 
-                           Q2 – Create Jenkins Pipeline (Checkout → Build → Test)
+                                                Q2 – Create Jenkins Pipeline (Checkout → Build → Test)
 # 1. Update system
 sudo apt update
 
@@ -326,7 +361,7 @@ pipeline {
 
 # 5. Save and Build → check console output for all stages
 
-                                 Q3 – Build Docker Image for Java Project and Verify
+                                                         Q3 – Build Docker Image for Java Project and Verify
 # 1. Update system & install Docker
 sudo apt update
 sudo apt install docker.io -y
