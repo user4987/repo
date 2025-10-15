@@ -1,0 +1,226 @@
+1. Basic Java Program with Input/Output
+
+import java.util.Scanner;
+
+public class StudentDetails {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Roll No: ");
+        int rollNo = sc.nextInt();
+
+        System.out.print("Enter Marks: ");
+        double marks = sc.nextDouble();
+
+        System.out.printf("\n--- Student Details ---\nName: %s\nRoll No: %d\nMarks: %.2f\n", name, rollNo, marks);
+        sc.close();
+    }
+}
+
+
+
+
+2. Decision-Making System for Library
+
+import java.util.Scanner;
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter book category (Science/Math/History): ");
+        String category = sc.nextLine();
+
+        if (category.equalsIgnoreCase("Science"))
+            System.out.println("Available books: Physics, Chemistry, Biology");
+        else if (category.equalsIgnoreCase("Math"))
+            System.out.println("Available books: Algebra, Geometry, Calculus");
+        else if (category.equalsIgnoreCase("History"))
+            System.out.println("Available books: World History, Indian History");
+        else
+            System.out.println("Category not found!");
+
+        sc.close();
+    }
+}
+
+
+3. Flight Reservation System using Loops
+import java.util.Scanner;
+
+public class FlightReservation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int totalSeats = 5;
+        boolean[] seats = new boolean[totalSeats];
+        int choice;
+
+        do {
+            System.out.println("\n1. Book Ticket\n2. Cancel Ticket\n3. View Seats\n4. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter seat number (1-" + totalSeats + "): ");
+                    int seat = sc.nextInt() - 1;
+                    if (seat >= 0 && seat < totalSeats && !seats[seat]) {
+                        seats[seat] = true;
+                        System.out.println("Seat booked successfully!");
+                    } else System.out.println("Seat not available!");
+                    break;
+
+                case 2:
+                    System.out.print("Enter seat number to cancel: ");
+                    seat = sc.nextInt() - 1;
+                    if (seat >= 0 && seat < totalSeats && seats[seat]) {
+                        seats[seat] = false;
+                        System.out.println("Booking cancelled.");
+                    } else System.out.println("Invalid seat number!");
+                    break;
+
+                case 3:
+                    System.out.println("Seat Status:");
+                    for (int i = 0; i < totalSeats; i++)
+                        System.out.println("Seat " + (i + 1) + ": " + (seats[i] ? "Booked" : "Available"));
+                    break;
+            }
+        } while (choice != 4);
+        sc.close();
+    }
+}
+
+
+
+4. Array-Based Passenger Booking System
+import java.util.Scanner;
+
+public class PassengerBooking {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[][] bookings = new String[5][3]; // name, seat, class
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Enter passenger name: ");
+            bookings[i][0] = sc.nextLine();
+            System.out.print("Enter seat number: ");
+            bookings[i][1] = sc.nextLine();
+            System.out.print("Enter class (Economy/Business): ");
+            bookings[i][2] = sc.nextLine();
+        }
+
+        System.out.println("\n--- Passenger List ---");
+        for (int i = 0; i < 5; i++)
+            System.out.printf("%s | Seat: %s | Class: %s%n", bookings[i][0], bookings[i][1], bookings[i][2]);
+        sc.close();
+    }
+}
+
+
+
+
+5. Banking Transaction Tracker using Strings
+import java.util.*;
+
+public class BankingTransaction {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder log = new StringBuilder();
+        String customerName;
+        int choice;
+        double balance = 0.0;
+
+        System.out.print("Enter customer name: ");
+        customerName = sc.nextLine();
+
+        do {
+            System.out.println("\n1. Deposit\n2. Withdraw\n3. View Log\n4. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: ");
+                    double dep = sc.nextDouble();
+                    balance += dep;
+                    log.append("Deposited: ").append(dep).append("\n");
+                    break;
+                case 2:
+                    System.out.print("Enter amount to withdraw: ");
+                    double wd = sc.nextDouble();
+                    if (wd <= balance) {
+                        balance -= wd;
+                        log.append("Withdrawn: ").append(wd).append("\n");
+                    } else log.append("Failed withdrawal attempt: ").append(wd).append("\n");
+                    break;
+                case 3:
+                    System.out.println("\n--- Transaction Log ---\n" + log);
+                    System.out.println("Current Balance: " + balance);
+                    break;
+            }
+        } while (choice != 4);
+        sc.close();
+    }
+}
+
+
+
+6. File I/O for Customer Accounts
+import java.io.*;
+import java.util.Scanner;
+
+public class CustomerFileIO {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        File file = new File("accounts.txt");
+
+        if (file.exists()) {
+            System.out.println("Existing Accounts:");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null)
+                System.out.println(line);
+            br.close();
+        }
+
+        FileWriter fw = new FileWriter(file, true);
+        System.out.print("Enter new account details (Name Balance): ");
+        fw.write(sc.nextLine() + "\n");
+        fw.close();
+        sc.close();
+        System.out.println("Data written successfully!");
+    }
+}
+
+
+
+
+7. Shopping Cart with Price Formatting
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class ShoppingCart {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        DecimalFormat df = new DecimalFormat("₹#,##0.00");
+
+        double total = 0;
+        System.out.print("Enter number of items: ");
+        int n = sc.nextInt();
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print("Enter price of item " + i + ": ");
+            total += sc.nextDouble();
+        }
+
+        double tax = total * 0.18;
+        double finalPrice = total + tax;
+
+        System.out.println("\nTotal: " + df.format(total));
+        System.out.println("Tax (18%): " + df.format(tax));
+        System.out.println("Final Price: " + df.format(finalPrice));
+        sc.close();
+    }
+}
